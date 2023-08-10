@@ -1,17 +1,10 @@
-const express = require('express');
 const connection = require('./config/connection');
-const User = require('./model/user');
+const express = require('express');
+const routes = require('./router/router')
 const app = express();
-app.use(express.json())
-const port = process.env.PORT || 3003;
-const userController = require('./controller/userControler')
+const port = 3003;
+app.use(express.json(), routes);
 
 app.listen(port, () => { 
     console.log(`Run server...${port}`) 
 });
-
-app.post('/user', userController.createUser);
-
-app.get('/', userController.findAllUser);
-
-
